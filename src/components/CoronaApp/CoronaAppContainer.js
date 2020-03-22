@@ -6,7 +6,7 @@ import { CardCountry } from './components';
 const CoronaApp = () => {
   const [url] = useState('https://covid19.mathdro.id/api/countries');
   const [selectedCountry, setSelectedCountry] = useState('VEN');
-  const { stats, loading, error } = useStats(url);
+  const { stats, loading } = useStats(url);
 
   if (loading) return <div className="loader">Cargando...</div>;
   if (stats.error)

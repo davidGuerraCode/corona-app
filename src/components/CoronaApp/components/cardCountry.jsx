@@ -2,7 +2,7 @@ import React from 'react';
 import { useStats } from '../../../utils/hooks';
 
 const CardCountry = ({ url }) => {
-  const { stats, loading, error } = useStats(url);
+  const { stats, loading } = useStats(url);
 
   if (loading) return <div className="loader">Cargando...</div>;
   if (stats.error)
