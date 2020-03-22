@@ -2,12 +2,11 @@ import React from 'react';
 
 const SelectCountries = ({ countries, currentCountry, onSelect }) => {
   return (
-    <select onChange={event => onSelect(event.target.value)}>
+    <select
+      onChange={event => onSelect(event.target.value)}
+      defaultValue={currentCountry}>
       {Object.entries(countries.countries).map(([country, code]) => (
-        <option
-          key={country}
-          value={countries.iso3[code]}
-          selected={countries.iso3[code] === currentCountry}>
+        <option key={country} value={countries.iso3[code]}>
           {country}
         </option>
       ))}
