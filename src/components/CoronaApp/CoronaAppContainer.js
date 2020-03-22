@@ -6,10 +6,16 @@ import { CardCountry } from './components';
 const CoronaApp = () => {
   const [url] = useState('https://covid19.mathdro.id/api/countries');
   const [selectedCountry, setSelectedCountry] = useState('VEN');
-  const { stats: countries, loading, error } = useStats(url);
+  const { stats, loading, error } = useStats(url);
 
   if (loading) return <div className="loader">Cargando...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (stats.error)
+    return (
+      <p className="error-message">
+        Oops, parace que la información para este país no está actualmente
+        disponible, <a href="/"> volver.</a>
+      </p>
+    );
 
   return (
     <>
@@ -18,7 +24,7 @@ const CoronaApp = () => {
         <h4>Actualmente mostrando {selectedCountry}</h4>
         <section className="select-container">
           <SelectCountries
-            countries={countries}
+            countries={stats}
             currentCountry={selectedCountry}
             onSelect={setSelectedCountry}
           />

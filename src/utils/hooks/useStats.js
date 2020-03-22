@@ -8,7 +8,6 @@ const useStats = url => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // console.log('Fetching data');
         setLoading(true);
         setError();
         const data = await fetch(url);
@@ -17,7 +16,7 @@ const useStats = url => {
         setStats(jsonData);
         setLoading(false);
       } catch (error) {
-        setError(error);
+        setError(error.message);
       }
     };
 

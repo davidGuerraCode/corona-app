@@ -5,7 +5,13 @@ const CardCountry = ({ url }) => {
   const { stats, loading, error } = useStats(url);
 
   if (loading) return <div className="loader">Cargando...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (stats.error)
+    return (
+      <p className="error-message">
+        Oops, parace que la información para este país no está actualmente
+        disponible, <a href="/"> volver.</a>
+      </p>
+    );
 
   return (
     <div className="cards-country">
