@@ -1,5 +1,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## This app is consuming the data provide for this API:
+
+https://covid19.mathdro.id/api/countries
+
 ## Available Scripts
 
 In the project directory, you can run:
