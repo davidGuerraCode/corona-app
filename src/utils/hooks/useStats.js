@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const useStats = url => {
+const useStats = (url = {}) => {
   const [stats, setStats] = useState({});
   const [loading, setLoading] = useState(true);
 

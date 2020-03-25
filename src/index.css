@@ -54,8 +54,8 @@ h4 {
 
 .cards-country {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+  flex-direction: column;
+  align-items: center;
   padding: 15px;
   background: rgba(255, 255, 255, 0.05);
   color: white;
@@ -70,21 +70,41 @@ h4 {
   margin: 10px;
 }
 
-.cards-country p:nth-child(1) {
+.display-data p:nth-child(1) {
   color: var(--secondary-color);
 }
-.cards-country p:nth-child(2) {
+.display-data p:nth-child(2) {
   color: var(--recovered-color);
 }
-.cards-country p:nth-child(3) {
+.display-data p:nth-child(3) {
   color: var(--deaths-color);
 }
 
-.cards-country label {
+.display-data label {
   display: block;
   font-weight: bold;
   font-size: 0.9rem;
   margin-bottom: 10px;
+}
+
+.display-data {
+  display: flex;
+  justify-content: space-between;
+}
+
+.last-update {
+  margin-top: 10px;
+  color: var(--gray-color);
+}
+
+.last-update label {
+  display: block;
+}
+
+.last-update label,
+.last-update p {
+  font-size: 0.8rem;
+  font-style: italic;
 }
 
 .loader {

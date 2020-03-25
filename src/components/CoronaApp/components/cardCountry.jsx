@@ -3,6 +3,11 @@ import { useStats } from '../../../utils/hooks';
 
 const CardCountry = ({ url }) => {
   const { stats, loading } = useStats(url);
+  const date = new Date(stats.lastUpdate);
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  const lastUpdate = `${day}/${month}/${year}`;
 
   if (loading) return <div className="loader">Cargando...</div>;
   if (stats.error)
@@ -15,18 +20,26 @@ const CardCountry = ({ url }) => {
 
   return (
     <div className="cards-country">
-      <p>
-        <label>Confirmados</label>
-        {stats.confirmed.value}
-      </p>
-      <p>
-        <label>Recuperadaos</label>
-        {stats.recovered.value}
-      </p>
-      <p>
-        <label>Muertes</label>
-        {stats.deaths.value}
-      </p>
+      <div className="display-data">
+        <p>
+          <label>Confirmados</label>
+          {stats.confirmed.value}
+        </p>
+        <p>
+          <label>Recuperadaos</label>
+          {stats.recovered.value}
+        </p>
+        <p>
+          <label>Muertes</label>
+          {stats.deaths.value}
+        </p>
+      </div>
+      <div className="last-update">
+        <p>
+          <label>Última actualización</label>
+          {lastUpdate}
+        </p>
+      </div>
     </div>
   );
 };

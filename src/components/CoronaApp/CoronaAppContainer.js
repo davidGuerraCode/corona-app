@@ -7,15 +7,16 @@ const CoronaApp = () => {
   const [url] = useState('https://covid19.mathdro.id/api/countries');
   const [selectedCountry, setSelectedCountry] = useState('VEN');
   const { stats, loading } = useStats(url);
-
+  // console.log('newStats format', stats.countries);
   if (loading) return <div className="loader">Cargando...</div>;
-  if (stats.error)
+  if (stats.error) {
     return (
       <p className="error-message">
         Oops, parace que la información para este país no está actualmente
         disponible, <a href="/"> volver.</a>
       </p>
     );
+  }
 
   return (
     <>

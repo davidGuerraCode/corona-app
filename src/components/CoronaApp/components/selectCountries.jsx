@@ -5,9 +5,9 @@ const SelectCountries = ({ countries, currentCountry, onSelect }) => {
     <select
       onChange={event => onSelect(event.target.value)}
       defaultValue={currentCountry}>
-      {Object.entries(countries.countries).map(([country, code]) => (
-        <option key={country} value={countries.iso3[code]}>
-          {country}
+      {countries.countries.map(({ name, iso3 }) => (
+        <option key={name} value={iso3}>
+          {name}
         </option>
       ))}
     </select>
