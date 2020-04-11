@@ -1,16 +1,19 @@
 import React from 'react';
-import { useStats } from '../../../utils/hooks';
+// import { useStats } from '../../../utils/hooks';
+import { useStatsMachineFetch } from '../../../utils/hooks';
 
 const CardCountry = ({ url }) => {
-  const { stats, loading } = useStats(url);
-  const date = new Date(stats.lastUpdate);
+  const { current } = useStatsMachineFetch(url);
+  const { data, error } = current.context;
+  const date = new Date(data.lastUpdate);
   const year = date.getFullYear();
   const month = date.getMonth() + 1;
   const day = date.getDate();
   const lastUpdate = `${day}/${month}/${year}`;
 
-  if (loading) return <div className="loader">Cargando...</div>;
-  if (stats.error)
+  if (current.matches('loading'))
+    return <div className="loader">Cargando...</div>;
+  if (current.matches('failure'))
     return (
       <p className="error-message">
         Oops, parace que la información para este país no está actualmente
@@ -23,15 +26,15 @@ const CardCountry = ({ url }) => {
       <div className="display-data">
         <p>
           <label>Confirmados</label>
-          {stats.confirmed.value}
+          {data.confirmed.value}
         </p>
         <p>
           <label>Recuperadaos</label>
-          {stats.recovered.value}
+          {data.recovered.value}
         </p>
         <p>
           <label>Muertes</label>
-          {stats.deaths.value}
+          {data.deaths.value}
         </p>
       </div>
       <div className="last-update">
