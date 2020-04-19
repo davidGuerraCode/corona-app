@@ -40,7 +40,9 @@ const fetchMachine = Machine({
       },
     },
     success: {
-      type: 'final',
+      on: {
+        FETCH: 'loading',
+      },
     },
     failure: {
       on: {

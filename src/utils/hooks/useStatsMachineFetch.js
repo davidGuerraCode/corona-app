@@ -1,21 +1,14 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { useMachine } from '@xstate/react';
 import { fetchMachine } from '../machines';
 
 const useStatsMachineFetch = (url) => {
   const [current, send] = useMachine(fetchMachine);
-  console.log('Current Machine State from hook', current);
-  const isMounted = useRef(null);
+  console.log('Mounting or updating');
 
   useEffect(() => {
-    isMounted.current = true;
-
     send({ type: 'FETCH', url });
-
-    return () => {
-      isMounted.current = false;
-    };
-  }, [url, current.context]);
+  }, [url]);
 
   return { current };
 };
